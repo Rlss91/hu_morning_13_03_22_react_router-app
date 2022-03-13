@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -10,11 +10,18 @@ import { authActions } from "../store/auth";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const emailRef = useRef(null);
   const history = useHistory();
 
   //for redux actions
   const dispatch = useDispatch();
   const loggedInRedux = useSelector((state) => state.auth.loggedIn);
+
+  //useEffect
+  useEffect(() => {
+    emailRef.current.focus();
+    console.log("ref");
+  }, [emailRef]);
 
   const handleEmailChange = (event) => {
     // console.log("event", event);
@@ -62,6 +69,7 @@ const LoginPage = () => {
         id="email"
         value={email}
         onChange={handleEmailChange}
+        ref={emailRef}
       ></input>
       <br />
       <label htmlFor="password">Password:</label>
@@ -72,7 +80,7 @@ const LoginPage = () => {
         onChange={handlePasswordChange}
       ></input>
       <br />
-      <button>login</button>
+      <button className="btn btn-primary">login</button>
       {/* like ngIf */}
       {loggedInRedux && (
         <div>
