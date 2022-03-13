@@ -1,5 +1,6 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
+import AuthGuardRoute from "./components/AuthGuardRoute";
 import NavBarComponent from "./components/NavBarComponent";
 import CardsPanelPage from "./pages/CardsPanelPage";
 import HomePage from "./pages/HomePage";
@@ -24,9 +25,10 @@ function App() {
           <LoginPage />
         </Route>
         {/* http://localhost:3000/cardspanel */}
-        <Route path="/cardspanel">
+        {/* <Route path="/cardspanel">
           <CardsPanelPage />
-        </Route>
+        </Route> */}
+        <AuthGuardRoute path="/cardspanel" component={CardsPanelPage} />
         <Route path="*">
           <NotFoundPage />
         </Route>
