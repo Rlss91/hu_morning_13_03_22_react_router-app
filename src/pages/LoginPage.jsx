@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -75,7 +75,7 @@ const LoginPage = () => {
     }
   };
 
-  useEffect(() => {
+  const memoizedCallback = useCallback(() => {
     console.log("location.state", location.state);
     if (location.state) {
       if (location.state.email && location.state.password) {
@@ -84,7 +84,11 @@ const LoginPage = () => {
         handleOnSubmit();
       }
     }
-  }, [location.state, email, password]);
+  }, [location.state, handleOnSubmit]);
+
+  useEffect(() => {
+    memoizedCallback();
+  }, [location.state, email, password, memoizedCallback]);
 
   return (
     <form onSubmit={handleOnSubmit}>
