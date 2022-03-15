@@ -6,6 +6,7 @@ import CardsPanelPage from "./pages/CardsPanelPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SignupPage from "./pages/SignupPage";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
           <LoginPage />
         </Route> */}
         <Route path="/login" component={LoginPage} />
+        {/* http://localhost:3000/signup */}
+        <Route path="/signup" component={SignupPage} />
         {/* http://localhost:3000/cardspanel */}
         {/* <Route path="/cardspanel">
           <CardsPanelPage />

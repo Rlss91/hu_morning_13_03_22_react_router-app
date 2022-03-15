@@ -26,10 +26,6 @@ const LoginPage = () => {
     console.log("ref");
   }, [emailRef]);
 
-  useEffect(() => {
-    console.log("location.state", location.state);
-  }, []);
-
   const handleEmailChange = (event) => {
     // console.log("event", event);
     setEmail(event.target.value);
@@ -39,7 +35,9 @@ const LoginPage = () => {
   };
   const handleOnSubmit = (event) => {
     //prevent the form to do refresh
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     const validatedValue = Joi.validate({ email, password }, loginSchema, {
       abortEarly: false,
     });
@@ -76,6 +74,18 @@ const LoginPage = () => {
         });
     }
   };
+
+  useEffect(() => {
+    console.log("location.state", location.state);
+    if (location.state) {
+      if (location.state.email && location.state.password) {
+        setEmail(location.state.email);
+        setPassword(location.state.password);
+        handleOnSubmit();
+      }
+    }
+  }, [location.state, email, password]);
+
   return (
     <form onSubmit={handleOnSubmit}>
       <label htmlFor="email">Email:</label>

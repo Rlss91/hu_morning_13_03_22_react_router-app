@@ -45,6 +45,16 @@ const NavBarComponent = () => {
               <NavLink
                 className="nav-link"
                 aria-current="page"
+                to="/signup"
+                activeClassName="activeLink"
+              >
+                Signup
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                aria-current="page"
                 to="/cardspanel"
                 activeClassName="activeLink"
               >
