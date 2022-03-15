@@ -2,6 +2,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import AuthGuardRoute from "./components/AuthGuardRoute";
 import NavBarComponent from "./components/NavBarComponent/NavBarComponent";
+import CardInfoPage from "./pages/CardInfoPage";
 import CardsPanelPage from "./pages/CardsPanelPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -34,6 +35,7 @@ function App() {
           <CardsPanelPage />
         </Route> */}
         <AuthGuardRoute path="/cardspanel" component={CardsPanelPage} />
+        <AuthGuardRoute path="/card/:id" component={CardInfoPage} />
         {/* <Route path="*">
           <NotFoundPage />
         </Route> */}
