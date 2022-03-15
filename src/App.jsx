@@ -1,7 +1,7 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import AuthGuardRoute from "./components/AuthGuardRoute";
-import NavBarComponent from "./components/NavBarComponent";
+import NavBarComponent from "./components/NavBarComponent/NavBarComponent";
 import CardsPanelPage from "./pages/CardsPanelPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";

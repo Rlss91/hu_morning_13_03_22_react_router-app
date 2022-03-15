@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import Joi from "joi-browser";
 
@@ -11,7 +11,10 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const emailRef = useRef(null);
+
+  //routes
   const history = useHistory();
+  const location = useLocation();
 
   //for redux actions
   const dispatch = useDispatch();
@@ -22,6 +25,10 @@ const LoginPage = () => {
     emailRef.current.focus();
     console.log("ref");
   }, [emailRef]);
+
+  useEffect(() => {
+    console.log("location.state", location.state);
+  }, []);
 
   const handleEmailChange = (event) => {
     // console.log("event", event);
@@ -50,7 +57,15 @@ const LoginPage = () => {
         .then((res) => {
           dispatch(authActions.login());
           localStorage.setItem("tokenKey", res.data.token);
-          history.push("/cardspanel");
+          if (location.state === null) {
+            history.push("/cardspanel");
+          } else {
+            if (location.state.fromPage) {
+              history.push(location.state.fromPage);
+            } else {
+              history.push("/cardspanel");
+            }
+          }
         })
         .catch((err) => {
           if (err.response) {
