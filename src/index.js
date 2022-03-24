@@ -8,6 +8,8 @@ import reportWebVitals from "./reportWebVitals";
 // add bootstrap to react
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle.js";
+// add react-toastify
+import "react-toastify/dist/ReactToastify.css";
 //redux
 import store from "./store/index";
 //axios

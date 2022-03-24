@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 import Joi from "joi-browser";
 
@@ -45,6 +46,7 @@ const LoginPage = () => {
     if (error) {
       //invalid email or password
       dispatch(authActions.logout());
+      toast.error("Email and/or password incorrect");
     } else {
       //email and password is good
       axios
@@ -66,8 +68,10 @@ const LoginPage = () => {
           }
         })
         .catch((err) => {
+          toast.error("Email and/or password incorrect");
           if (err.response) {
-            alert(err.response.data);
+            // alert(err.response.data);
+            console.log(err.response.data);
           }
           localStorage.clear();
           dispatch(authActions.logout());

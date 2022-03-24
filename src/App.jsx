@@ -1,4 +1,5 @@
 import { Route, Switch, Redirect } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 import AuthGuardRoute from "./components/AuthGuardRoute";
 import NavBarComponent from "./components/NavBarComponent/NavBarComponent";
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className="container">
       <NavBarComponent></NavBarComponent>
+      <ToastContainer />
       <Switch>
         {/* http://localhost:3000/ */}
         <Route path="/" exact>

@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDragon } from "@fortawesome/free-solid-svg-icons";
 import "./NavBarComponent.css";
 
 const NavBarComponent = () => {
@@ -28,6 +30,7 @@ const NavBarComponent = () => {
                 to="/home"
                 activeClassName="activeLink"
               >
+                <FontAwesomeIcon icon={faDragon} />
                 Home
               </NavLink>
             </li>

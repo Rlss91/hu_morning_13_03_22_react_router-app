@@ -14,7 +14,7 @@ const CardInfoPage = () => {
       .catch((err) => {
         console.log("err", err);
       });
-  }, []);
+  }, [id]);
   return <h1>CardInfoPage</h1>;
 };
 
