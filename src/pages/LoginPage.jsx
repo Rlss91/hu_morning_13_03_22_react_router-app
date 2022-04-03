@@ -83,9 +83,12 @@ const LoginPage = () => {
     console.log("location.state", location.state);
     if (location.state) {
       if (location.state.email && location.state.password) {
-        setEmail(location.state.email);
-        setPassword(location.state.password);
-        handleOnSubmit();
+        if (!email || !password) {
+          setEmail(location.state.email);
+          setPassword(location.state.password);
+        } else {
+          handleOnSubmit();
+        }
       }
     }
   }, [location.state, handleOnSubmit]);
