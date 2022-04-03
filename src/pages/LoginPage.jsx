@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Joi from "joi-browser";
+import jwt_decode from "jwt-decode";
 
 import loginSchema from "../validation/login.validation";
 import { authActions } from "../store/auth";
@@ -56,6 +57,8 @@ const LoginPage = () => {
         })
         .then((res) => {
           dispatch(authActions.login());
+          const decoded = jwt_decode(res.data.token);
+          dispatch(authActions.updateUser(decoded));
           localStorage.setItem("tokenKey", res.data.token);
           if (location.state === null) {
             history.push("/cardspanel");

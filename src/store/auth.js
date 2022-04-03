@@ -6,6 +6,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialAuthState = {
   loggedIn: false,
   token: "",
+  userData: {},
 };
 
 /*
@@ -26,6 +27,10 @@ const authSlice = createSlice({
     updateToken(state, action) {
       // console.log("action", action);
       state.token = action.payload;
+    },
+    updateUser(state, action) {
+      // console.log("action", action);
+      state.userData = action.payload;
     },
   },
 });

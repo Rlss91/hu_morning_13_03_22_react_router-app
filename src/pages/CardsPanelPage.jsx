@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import CardComponent from "../components/CardComponent/CardComponent";
 
 const CardsPanelPage = () => {
   const location = useLocation();
+  const userInfoRedux = useSelector((state) => state.auth.userData);
   const [cardsArr, setCardsArr] = useState([]);
-  const [objID, setObjID] = useState("");
   console.log("location.pathname", location.pathname);
   useEffect(() => {
-    const objIdFromStorage = localStorage.getItem("tokenKey");
-    const decoded = jwt_decode(objIdFromStorage);
-    console.log("decoded", decoded);
-    setObjID(decoded._id);
     axios
       .get("/cards/allCards")
       .then(({ data }) => {
@@ -36,7 +32,7 @@ const CardsPanelPage = () => {
             address={item.address}
             image={item.image}
             userIDCard={item.userID}
-            userIDLoggedIn={objID}
+            userIDLoggedIn={userInfoRedux._id}
           />
         );
       })}
