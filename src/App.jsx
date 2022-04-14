@@ -11,9 +11,13 @@ import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import QueryParams from "./pages/QueryParams";
 // import SignupPage from "./pages/SignupPage";
+
+import useRandomNumber from "./hooks/useRandomNumber";
+
 const SignupPage = React.lazy(() => import("./pages/SignupPage"));
 
 function App() {
+  const randNumber = useRandomNumber(50, 100);
   return (
     <div className="container">
       <NavBarComponent></NavBarComponent>
@@ -37,6 +41,7 @@ function App() {
           <Route path="*" component={NotFoundPage} />
         </Switch>
       </Suspense>
+      {randNumber}
     </div>
   );
 }

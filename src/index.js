@@ -17,7 +17,7 @@ import axios from "axios";
 //add this url before every axios request
 //if the url is relative
 //if the url has http it will not add baseUrl
-axios.defaults.baseURL = "http://localhost:8181/api";
+axios.defaults.baseURL = process.env.REACT_APP_BASE_API_URL;
 
 axios.interceptors.request.use((config) => {
   const token = localStorage.getItem("tokenKey");
