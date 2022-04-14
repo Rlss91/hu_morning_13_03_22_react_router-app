@@ -42,7 +42,6 @@ const NavBarComponent = () => {
                 }}
                 aria-current="page"
                 to="/login"
-                activeClassName="activeLink"
               >
                 Login
               </NavLink>
@@ -54,7 +53,6 @@ const NavBarComponent = () => {
                 }}
                 aria-current="page"
                 to="/signup"
-                activeClassName="activeLink"
               >
                 Signup
               </NavLink>
@@ -66,7 +64,6 @@ const NavBarComponent = () => {
                 }}
                 aria-current="page"
                 to="/cardspanel"
-                activeClassName="activeLink"
               >
                 Cards Panel
               </NavLink>
