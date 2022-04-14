@@ -1,9 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,7 +31,7 @@ const SignupPage = () => {
       .post("/users/register", { name, email, password, biz })
       .then((res) => {
         console.log("res.data", res.data);
-        history.push("/login", { email, password });
+        navigate("/login", { state: { email, password } });
       })
       .catch((err) => {
         console.log("err", err);

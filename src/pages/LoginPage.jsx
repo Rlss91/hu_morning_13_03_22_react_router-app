@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Joi from "joi-browser";
@@ -15,7 +15,7 @@ const LoginPage = () => {
   const emailRef = useRef(null);
 
   //routes
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   //for redux actions
@@ -61,12 +61,12 @@ const LoginPage = () => {
           dispatch(authActions.updateUser(decoded));
           localStorage.setItem("tokenKey", res.data.token);
           if (location.state === null) {
-            history.push("/cardspanel");
+            navigate("/cardspanel");
           } else {
             if (location.state.fromPage) {
-              history.push(location.state.fromPage);
+              navigate(location.state.fromPage);
             } else {
-              history.push("/cardspanel");
+              navigate("/cardspanel");
             }
           }
         })

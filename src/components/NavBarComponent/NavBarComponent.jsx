@@ -25,10 +25,11 @@ const NavBarComponent = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink
-                className="nav-link"
+                className={(navData) => {
+                  return "nav-link " + (navData.isActive ? "activeLink" : "");
+                }}
                 aria-current="page"
                 to="/home"
-                activeClassName="activeLink"
               >
                 <FontAwesomeIcon icon={faDragon} />
                 Home
@@ -36,7 +37,9 @@ const NavBarComponent = () => {
             </li>
             <li className="nav-item">
               <NavLink
-                className="nav-link"
+                className={(navData) => {
+                  return "nav-link " + (navData.isActive ? "activeLink" : "");
+                }}
                 aria-current="page"
                 to="/login"
                 activeClassName="activeLink"
@@ -46,7 +49,9 @@ const NavBarComponent = () => {
             </li>
             <li className="nav-item">
               <NavLink
-                className="nav-link"
+                className={(navData) => {
+                  return "nav-link " + (navData.isActive ? "activeLink" : "");
+                }}
                 aria-current="page"
                 to="/signup"
                 activeClassName="activeLink"
@@ -56,7 +61,9 @@ const NavBarComponent = () => {
             </li>
             <li className="nav-item">
               <NavLink
-                className="nav-link"
+                className={(navData) => {
+                  return "nav-link " + (navData.isActive ? "activeLink" : "");
+                }}
                 aria-current="page"
                 to="/cardspanel"
                 activeClassName="activeLink"

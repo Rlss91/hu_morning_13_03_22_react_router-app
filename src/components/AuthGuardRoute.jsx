@@ -1,28 +1,16 @@
 import React, { useState } from "react";
-import { Route, Redirect, useLocation } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const AuthGuardRoute = ({ component: Component, ...rest }) => {
+const AuthGuardRoute = () => {
   const loggedIn = useSelector((state) => state.auth.loggedIn);
   const location = useLocation();
   const [fromPage] = useState(location.pathname);
   console.log("location.pathname", location.pathname);
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        loggedIn === true ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { fromPage },
-            }}
-          />
-        )
-      }
-    ></Route>
+  return loggedIn === true ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" state={{ fromPage }} />
   );
 };
 

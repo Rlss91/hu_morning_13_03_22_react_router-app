@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "./App.css";
 import AuthGuardRoute from "./components/AuthGuardRoute";
 import NavBarComponent from "./components/NavBarComponent/NavBarComponent";
-import CardInfoPage from "./pages/CardInfoPage";
+// import CardInfoPage from "./pages/CardInfoPage";
 import CardsPanelPage from "./pages/CardsPanelPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -23,23 +23,23 @@ function App() {
       <NavBarComponent></NavBarComponent>
       <ToastContainer />
       <Suspense fallback={<div>loading</div>}>
-        <Switch>
+        <Routes>
           {/* http://localhost:3000/ */}
-          <Route path="/" exact>
-            <Redirect to="/home" />
-          </Route>
+          <Route path="/" element={<Navigate to="/home" />} />
           {/* http://localhost:3000/home */}
-          <AuthGuardRoute path="/home" component={HomePage} />
+          <Route path="/home" element={<HomePage />} />
           {/* http://localhost:3000/login */}
-          <Route path="/login" component={LoginPage} />
+          <Route path="/login" element={<LoginPage />} />
           {/* http://localhost:3000/signup */}
-          <Route path="/signup" component={SignupPage} />
+          <Route path="/signup" element={<SignupPage />} />
           {/* http://localhost:3000/cardspanel */}
-          <AuthGuardRoute path="/cardspanel" component={CardsPanelPage} />
-          <AuthGuardRoute path="/card/:id" component={CardInfoPage} />
-          <Route path="/qparams" component={QueryParams} />
-          <Route path="*" component={NotFoundPage} />
-        </Switch>
+          <Route path="/cardspanel" element={<AuthGuardRoute />}>
+            <Route element={<CardsPanelPage />} />
+          </Route>
+          {/* <AuthGuardRoute path="/card/:id" element={CardInfoPage} /> */}
+          <Route path="/qparams" element={<QueryParams />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
       </Suspense>
       {randNumber}
     </div>

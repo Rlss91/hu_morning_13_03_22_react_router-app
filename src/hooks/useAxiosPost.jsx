@@ -17,8 +17,3 @@ const useAxiosPost = (url, body = undefined) => {
 };
 
 export default useAxiosPost;
-
-// let dataToServer = {
-//     a:1,b:234523, c:34234
-// }
-// http://localhost:3000/test?a=1&b=234523&c=34234
